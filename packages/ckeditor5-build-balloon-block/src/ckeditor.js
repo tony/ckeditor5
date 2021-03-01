@@ -6,6 +6,10 @@
 // The editor creator to use.
 import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
 
+// Custom
+import Mention from '@ckeditor/ckeditor5-mention/src/mention';
+
+// Default
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
@@ -60,7 +64,10 @@ BalloonEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+
+	// ADDED
+	Mention
 ];
 
 // Editor configuration.
