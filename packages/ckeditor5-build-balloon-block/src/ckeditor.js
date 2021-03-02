@@ -8,7 +8,7 @@ import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/balloonedi
 
 // Custom
 import Mention from '@ckeditor/ckeditor5-mention/src/mention';
-import Mathematics from 'ckeditor5-math/src/math';
+import Mathematics from '@peergrade/ckeditor5-math/src/math';
 
 // Default
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
