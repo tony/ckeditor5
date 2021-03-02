@@ -8,6 +8,7 @@ import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/balloonedi
 
 // Custom
 import Mention from '@ckeditor/ckeditor5-mention/src/mention';
+import Mathematics from 'ckeditor5-math/src/math';
 
 // Default
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
@@ -69,7 +70,8 @@ BalloonEditor.builtinPlugins = [
 
 	// ADDED
 	Mention,
-	ImageResize
+	ImageResize,
+	Mathematics,
 ];
 
 // Editor configuration.
@@ -87,6 +89,7 @@ BalloonEditor.defaultConfig = {
 		'blockQuote',
 		'insertTable',
 		'mediaEmbed',
+		'math',
 		'|',
 		'undo',
 		'redo'
@@ -114,5 +117,14 @@ BalloonEditor.defaultConfig = {
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language: 'en',
+
+	// Custom
+	math: {
+		engine: 'katex', // or katex or function. E.g. (equation, element, display) => { ... }
+		lazyLoad: undefined, // async () => { ... }, called once before render engine missing. After resolution, renders equation.
+		outputType: 'script', // or span
+		forceOutputType: false, // forces output to use outputType
+		enablePreview: true // Enable preview view
+	}
 };
