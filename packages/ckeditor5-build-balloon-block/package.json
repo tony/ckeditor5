@@ -45,7 +45,7 @@
     "@ckeditor/ckeditor5-table": "^26.0.0",
     "@ckeditor/ckeditor5-typing": "^26.0.0",
     "@ckeditor/ckeditor5-ui": "^26.0.0",
-    "ckeditor5-math": "^25.0.0"
+    "ckeditor5-math": "tony/ckeditor5-math#version-26"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-core": "^26.0.0",
