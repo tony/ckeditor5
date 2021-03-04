@@ -1,6 +1,6 @@
 {
   "name": "@tony/ckeditor5-build-experiment",
-  "version": "26.0.0-next.1",
+  "version": "26.0.0-next.2",
   "description": "The balloon editor build of CKEditor 5 with a block toolbar – the best browser-based rich text editor.",
   "keywords": [
     "wysiwyg",
@@ -46,7 +46,7 @@
     "@ckeditor/ckeditor5-table": "^26.0.0",
     "@ckeditor/ckeditor5-typing": "^26.0.0",
     "@ckeditor/ckeditor5-ui": "^26.0.0",
-    "ckeditor5-math": "tony/ckeditor5-math#version-26"
+    "ckeditor5-math": "26.0.0"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-core": "^26.0.0",
