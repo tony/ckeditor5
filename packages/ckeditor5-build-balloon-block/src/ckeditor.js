@@ -36,6 +36,7 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
 import '../theme/theme.css';
 
@@ -51,6 +52,7 @@ BalloonEditor.builtinPlugins = [
 	Italic,
 	BlockQuote,
 	CKFinder,
+	CloudServices,
 	EasyImage,
 	Heading,
 	Image,
@@ -82,10 +84,10 @@ BalloonEditor.defaultConfig = {
 		'bulletedList',
 		'numberedList',
 		'|',
-		'indent',
 		'outdent',
+		'indent',
 		'|',
-		'imageUpload',
+		'uploadImage',
 		'blockQuote',
 		'insertTable',
 		'mediaEmbed',
