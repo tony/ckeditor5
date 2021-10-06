@@ -74,10 +74,28 @@ function EditorClassPlugin( editor ) {
 	} );
 }
 
+function MoveSelectionToTextOnInit( editor ) {
+	const model = editor.model;
+	const selection = model.document.selection;
+	const schema = model.schema;
+
+	editor.data.on( 'init', () => {
+		const selectedElement = selection.getSelectedElement();
+
+		if ( selectedElement && schema.isObject( selectedElement ) ) {
+			const newSelection = model.createSelection( selection.getLastPosition() );
+
+			model.modifySelection( newSelection, { direction: 'forward' } );
+			model.change( writer => writer.setSelection( newSelection.focus ) );
+		}
+	} );
+}
+
 // Plugins to include in the build.
 const plugins = [
 	Essentials,
 	EditorClassPlugin,
+	MoveSelectionToTextOnInit,
 	UploadAdapter,
 	Autoformat,
 	BlockToolbar,
