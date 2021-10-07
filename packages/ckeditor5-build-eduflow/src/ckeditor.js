@@ -85,8 +85,20 @@ function MoveSelectionToTextOnInit( editor ) {
 		if ( selectedElement && schema.isObject( selectedElement ) ) {
 			const newSelection = model.createSelection( selection.getLastPosition() );
 
+			model.change( writer => {
+				const root = editor.model.document.getRoot();
+				// covers 2 cases - single widget in content area; two widgets one under the other
+				if ( root.childCount == 1 ) {
+					writer.appendElement( 'paragraph', root );
+				} else if ( selectedElement.nextSibling && schema.isObject( selectedElement.nextSibling ) ) {
+					writer.insertElement( 'paragraph', selectedElement, 'after' );
+				}
+			} );
+
 			model.modifySelection( newSelection, { direction: 'forward' } );
-			model.change( writer => writer.setSelection( newSelection.focus ) );
+			model.change( writer => {
+				writer.setSelection( newSelection.focus );
+			} );
 		}
 	} );
 }
