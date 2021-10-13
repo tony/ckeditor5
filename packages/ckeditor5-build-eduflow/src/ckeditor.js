@@ -75,32 +75,62 @@ function EditorClassPlugin( editor ) {
 }
 
 function MoveSelectionToTextOnInit( editor ) {
-	const model = editor.model;
-	const selection = model.document.selection;
-	const schema = model.schema;
+	// const model = editor.model;
+	// const selection = model.document.selection;
+	// const schema = model.schema;
+	//
+	// editor.data.on( 'init', () => {
+	// 	const selectedElement = selection.getSelectedElement();
+	//
+	// 	if ( selectedElement && schema.isObject( selectedElement ) ) {
+	// 		const newSelection = model.createSelection( selection.getLastPosition() );
+	//
+	// 		model.change( writer => {
+	// 			const root = editor.model.document.getRoot();
+	// 			// covers 2 cases - single widget in content area; two widgets one under the other
+	// 			if ( root.childCount == 1 ) {
+	// 				writer.appendElement( 'paragraph', root );
+	// 			} else if ( selectedElement.nextSibling && schema.isObject( selectedElement.nextSibling ) ) {
+	// 				writer.insertElement( 'paragraph', selectedElement, 'after' );
+	// 			}
+	// 		} );
+	//
+	// 		model.modifySelection( newSelection, { direction: 'forward' } );
+	// 		model.change( writer => {
+	// 			writer.setSelection( newSelection.focus );
+	// 		} );
+	// 	}
+	// } );
 
-	editor.data.on( 'init', () => {
-		const selectedElement = selection.getSelectedElement();
+	// According to support, this handles removing focus from only selected object + makes 'on('init')' redundant
+	editor.editing.view.document.on( 'change:isFocused', ( evt, name, isFocused ) => {
+		const model = editor.model;
+		const selection = model.document.selection;
+		const schema = model.schema;
 
-		if ( selectedElement && schema.isObject( selectedElement ) ) {
-			const newSelection = model.createSelection( selection.getLastPosition() );
+		if ( !isFocused ) {
+			const selectedElement = selection.getSelectedElement();
+			if ( selectedElement && schema.isObject( selectedElement ) ) {
+				const newSelection = model.createSelection( selection.getLastPosition() );
 
-			model.change( writer => {
-				const root = editor.model.document.getRoot();
-				// covers 2 cases - single widget in content area; two widgets one under the other
-				if ( root.childCount == 1 ) {
-					writer.appendElement( 'paragraph', root );
-				} else if ( selectedElement.nextSibling && schema.isObject( selectedElement.nextSibling ) ) {
-					writer.insertElement( 'paragraph', selectedElement, 'after' );
-				}
-			} );
+				model.change( writer => {
+					const root = editor.model.document.getRoot();
 
-			model.modifySelection( newSelection, { direction: 'forward' } );
-			model.change( writer => {
-				writer.setSelection( newSelection.focus );
-			} );
+					// covers 2 cases - single widget in content area; two widgets one under the other
+					if ( root.childCount == 1 ) {
+						writer.appendElement( 'paragraph', root );
+					} else if ( selectedElement.nextSibling && schema.isObject( selectedElement.nextSibling ) ) {
+						writer.insertElement( 'paragraph', selectedElement, 'after' );
+					}
+				} );
+
+				model.modifySelection( newSelection, { direction: 'forward' } );
+				model.change( writer => {
+					writer.setSelection( newSelection.focus );
+				} );
+			}
 		}
-	} );
+	}, { priority: 'lowest' } );
 }
 
 // Plugins to include in the build.
