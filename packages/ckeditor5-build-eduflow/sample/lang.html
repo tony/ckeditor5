@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<link type="text/css" href="sample/css/sample.css" rel="stylesheet" media="screen" />
+	<title>CKEditor 5 – classic editor build sample</title>
+</head>
+<body>
+
+<header>
+	<div class="centered">
+		<h1><a href="https://ckeditor.com/ckeditor-5"><img src="sample/img/logo.svg" alt="WYSIWYG editor - CKEditor 5" /></a></h1>
+
+		<input type="checkbox" id="menu-toggle" />
+		<label for="menu-toggle"></label>
+
+		<nav>
+			<ul>
+				<li><a href="https://ckeditor.com/ckeditor-5">Project homepage</a></li>
+				<li><a href="https://ckeditor.com/docs/">Documentation</a></li>
+				<li><a href="https://github.com/ckeditor/ckeditor5">GitHub</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<main>
+	<div class="message">
+		<div class="centered">
+			<h1>Congratulations!</h1>
+
+			<p>If you can see CKEditor below, it means that the installation succeeded. You can now try out your new editor version, see its features,
+			and check some of the most useful <a href="#references">resources recommended below</a>.</p>
+		</div>
+	</div>
+	<div class="centered">
+		<p>
+			Available languages:<br>
+			<script>
+				const languages = [
+					{
+						code: 'en',
+						name : 'English'
+					},
+					{
+						code: 'de',
+						name : 'German'
+					},
+					{
+						code: 'es',
+						name : 'Spanish'
+					},
+					{
+						code: 'fr',
+						name : 'French'
+					},
+					{
+						code: 'ar',
+						name : 'Arabian'
+					},
+					{
+						code: 'he',
+						name : 'Hebrew'
+					}
+				];
+
+				document.write( '<select disabled="disabled" id="languages" onchange="createEditor( this.value );">' );
+
+				for ( var i = 0 ; i < languages.length ; i++ ) {
+					document.write(
+						'<option value="' + languages[i].code + '">' +
+							languages[i].name +
+						'</option>' );
+				}
+				document.write( '</select>' );
+
+			</script>
+			<br>
+			<span>
+				(You may see strange characters if your system does not support the selected language)
+			</span>
+		</p>
+
+		<div id="editor">
+			<h2>The three greatest things you learn from traveling</h2>
+
+			<p>Like all the great things on earth traveling teaches us by example. Here are some of the most precious lessons I’ve learned over the years of traveling.</p>
+
+			<h3>Appreciation of diversity</h3>
+
+			<p>Getting used to an entirely different culture can be challenging. While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing <a href="https://en.wikipedia.org/wiki/Cultural_diversity">cultural diversity</a> in person. You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>
+
+			<figure class="image image-style-side"><img src="sample/img/umbrellas.jpg" alt="Three Monks walking on ancient temple.">
+				<figcaption>Leaving your comfort zone might lead you to such beautiful sceneries like this one.</figcaption>
+			</figure>
+
+			<h3>Confidence</h3>
+
+			<p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared, traveling teaches us how ridiculous it is to be afraid of something before it happens. The moment you face your fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
+		</div>
+	</div>
+</main>
+
+<footer>
+	<div>
+		<p>CKEditor 5 – The text editor for the Internet – <a href="https://ckeditor.com/ckeditor-5">https://ckeditor.com/ckeditor-5</a></p>
+		<p>Copyright © 2003-2019, <a href="https://cksource.com/">CKSource</a> – Frederico Knabben. All rights reserved.</p>
+	</div>
+</footer>
+
+<script src="../build/ckeditor.js"></script>
+
+<!-- You have to load all languages you wish to use -->
+<script src="../build/translations/en.js"></script>
+<script src="../build/translations/de.js"></script>
+<script src="../build/translations/es.js"></script>
+<script src="../build/translations/fr.js"></script>
+<script src="../build/translations/he.js"></script>
+<script>
+		function createEditor( languageCode ) {
+			if ( window.myeditor )
+				myeditor.destroy();
+
+			// Use default language if the value is invalid.
+			if( !languageCode )
+				languageCode = 'en';
+
+			window.CKEDITOR.ClassicEditor
+				.create( document.querySelector( '#editor' ), {
+					 language: languageCode
+				} )
+				.then( editor => {
+					window.myeditor = editor;
+
+					const languages = document.getElementById( 'languages' );
+					languages.value = languageCode;
+					languages.disabled = false;
+				} )
+				.catch( err => {
+					console.error( err.stack );
+				} );
+		}
+
+		createEditor( '' );
+</script>
+
+</body>
+</html>
