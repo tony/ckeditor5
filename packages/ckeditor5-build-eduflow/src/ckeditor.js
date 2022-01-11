@@ -75,34 +75,40 @@ function EditorClassPlugin( editor ) {
 }
 
 function MoveSelectionToTextOnInit( editor ) {
-	// const model = editor.model;
-	// const selection = model.document.selection;
-	// const schema = model.schema;
-	//
-	// editor.data.on( 'init', () => {
-	// 	const selectedElement = selection.getSelectedElement();
-	//
-	// 	if ( selectedElement && schema.isObject( selectedElement ) ) {
-	// 		const newSelection = model.createSelection( selection.getLastPosition() );
-	//
-	// 		model.change( writer => {
-	// 			const root = editor.model.document.getRoot();
-	// 			// covers 2 cases - single widget in content area; two widgets one under the other
-	// 			if ( root.childCount == 1 ) {
-	// 				writer.appendElement( 'paragraph', root );
-	// 			} else if ( selectedElement.nextSibling && schema.isObject( selectedElement.nextSibling ) ) {
-	// 				writer.insertElement( 'paragraph', selectedElement, 'after' );
-	// 			}
-	// 		} );
-	//
-	// 		model.modifySelection( newSelection, { direction: 'forward' } );
-	// 		model.change( writer => {
-	// 			writer.setSelection( newSelection.focus );
-	// 		} );
-	// 	}
-	// } );
+	const model = editor.model;
+	const selection = model.document.selection;
+	const schema = model.schema;
 
-	// According to support, this handles removing focus from only selected object + makes 'on('init')' redundant
+	//
+	// Widget Workaround (no focus on load): Single widget in content area, avoid selecting by default by insert a newline after
+	// This will briefly focus the image initially, but add a new line and defocus.
+	//
+	editor.data.on( 'init', () => {
+		const selectedElement = selection.getSelectedElement();
+
+		if ( selectedElement && schema.isObject( selectedElement ) ) {
+			const newSelection = model.createSelection( selection.getLastPosition() );
+
+			model.change( writer => {
+				const root = editor.model.document.getRoot();
+				// covers 2 cases - single widget in content area; two widgets one under the other
+				if ( root.childCount == 1 ) {
+					writer.appendElement( 'paragraph', root );
+				} else if ( selectedElement.nextSibling && schema.isObject( selectedElement.nextSibling ) ) {
+					writer.insertElement( 'paragraph', selectedElement, 'after' );
+				}
+			} );
+
+			model.modifySelection( newSelection, { direction: 'forward' } );
+			model.change( writer => {
+				writer.setSelection( newSelection.focus );
+			} );
+		}
+	} );
+
+	//
+	// Widget Workaround part 2 (delection edgecase): Allow image to be defocused when clicking on the right side
+	//
 	editor.editing.view.document.on( 'change:isFocused', ( evt, name, isFocused ) => {
 		const model = editor.model;
 		const selection = model.document.selection;
