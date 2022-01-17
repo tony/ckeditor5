@@ -50,6 +50,7 @@
     "@ckeditor/ckeditor5-table": "^30.0.0",
     "@ckeditor/ckeditor5-typing": "^30.0.0",
     "@ckeditor/ckeditor5-ui": "^30.0.0",
+    "@peergrade/ckeditor5-accordion": "0.0.2",
     "ckeditor5-math": "^30.0.0"
   },
   "devDependencies": {

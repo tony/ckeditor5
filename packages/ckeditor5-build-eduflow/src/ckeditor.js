@@ -47,6 +47,7 @@ import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
 import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
 import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import { Accordion } from '@peergrade/ckeditor5-accordion';
 
 import '../theme/theme.css';
 
@@ -168,6 +169,7 @@ const plugins = [
 	TextTransformation,
 
 	// ADDED
+	Accordion,
 	Code,
 	CodeBlock,
 	HorizontalLine,

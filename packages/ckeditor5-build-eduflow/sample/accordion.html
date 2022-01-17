@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CKEditor 5 – balloon block editor build – development sample</title>
+	<style>
+		body {
+			max-width: 800px;
+			margin: 20px auto;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
+</head>
+<body>
+
+<h1>CKEditor 5 – balloon block editor build – development sample</h1>
+
+<div id="editor">
+	<details class="accordion">
+		<summary class="accordion-title">Our quiz</summary>
+		<div class="accordion-content">
+			<p>Our inner content</p>
+		</div>
+	</details>
+</div>
+
+<script src="../build/ckeditor.js"></script>
+<script>
+	window.CKEDITOR.ClassicEditor.create( document.querySelector( '#editor' ), { toolbar: [ '|', 'insertAccordion', '|'] } )
+		.then( editor => {
+			window.editor = editor;
+		} )
+		.catch( error => {
+			console.error( 'There was a problem initializing the editor.', error );
+		} );
+</script>
+
+</body>
+</html>
