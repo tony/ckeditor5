@@ -9,6 +9,9 @@
 			margin: 20px auto;
 			font-family: Arial, Helvetica, sans-serif;
 		}
+		.ck.ck-icon * {
+			stroke: black
+		}
 	</style>
 </head>
 <body>
@@ -23,7 +26,12 @@
 
 <script src="../build/ckeditor.js"></script>
 <script>
-	window.CKEDITOR.BalloonEditor.create( document.querySelector( '#editor' ) )
+window.CKEDITOR.ClassicEditor.create( document.querySelector( '#editor' ), 
+		{ 
+			image: { toolbar:['linkImage'] }, 
+			toolbar: [ 'insertAccordion', 'link' ],
+			contentToolbar: [ 'insertAccordion', 'link' ]
+		} )
 		.then( editor => {
 			window.editor = editor;
 		} )
