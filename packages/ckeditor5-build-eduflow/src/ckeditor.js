@@ -144,7 +144,6 @@ function MoveSelectionToTextOnInit( editor ) {
 const plugins = [
 	Essentials,
 	EditorClassPlugin,
-	MoveSelectionToTextOnInit,
 	UploadAdapter,
 	Autoformat,
 	BlockToolbar,
@@ -189,4 +188,4 @@ const plugins = [
 BalloonEditor.builtinPlugins = plugins;
 ClassicEditor.builtinPlugins = plugins;
 
-export default { BalloonEditor, ClassicEditor };
+export default { BalloonEditor, ClassicEditor, MoveSelectionToTextOnInit };
