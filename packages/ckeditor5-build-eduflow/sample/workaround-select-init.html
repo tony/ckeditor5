@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CKEditor 5 – balloon block editor build – development sample</title>
+	<style>
+		body {
+			max-width: 800px;
+			margin: 20px auto;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		.ck.ck-icon * {
+			stroke: black
+		}
+	</style>
+</head>
+<body>
+
+<h1>CKEditor 5 – balloon block editor build – development sample</h1>
+
+<div id="editor">
+	<figure class="image">
+		<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
+	</figure>
+</div>
+
+<script src="../build/ckeditor.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p" crossorigin="anonymous"></script>
+
+<script>
+window.CKEDITOR.ClassicEditor.create( document.querySelector( '#editor' ),
+		{
+			image: { toolbar:['linkImage'] },
+			math: {
+				engine: 'katex', // or katex or function. E.g. (equation, element, display) => { ... }
+				lazyLoad: undefined, // async () => { ... }, called once before render engine missing. After resolution, renders equation.
+				outputType: 'span', // or script
+				forceOutputType: true, // forces output to use outputType
+				enablePreview: true, // Enable preview view
+			},
+			toolbar: [ 'math', 'link' ],
+			contentToolbar: [ 'math', 'link' ],
+			extraPlugins: [ window.CKEDITOR.MoveSelectionToTextOnInit ],
+		} )
+		.then( editor => {
+			window.editor = editor;
+		} )
+		.catch( error => {
+			console.error( 'There was a problem initializing the editor.', error );
+		} );
+</script>
+
+
+
+</body>
+</html>
