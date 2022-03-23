@@ -143,7 +143,6 @@ function MoveSelectionToTextOnInit( editor ) {
 // Plugins to include in the build.
 const plugins = [
 	Essentials,
-	EditorClassPlugin,
 	UploadAdapter,
 	Autoformat,
 	BlockToolbar,
