@@ -188,4 +188,11 @@ const plugins = [
 BalloonEditor.builtinPlugins = plugins;
 ClassicEditor.builtinPlugins = plugins;
 
-export default { BalloonEditor, ClassicEditor, MoveSelectionToTextOnInit };
+export default {
+	BalloonEditor,
+	ClassicEditor,
+
+	// Custom plugins
+	EditorClassPlugin,
+	MoveSelectionToTextOnInit
+};

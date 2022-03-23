@@ -43,7 +43,7 @@ window.CKEDITOR.ClassicEditor.create( document.querySelector( '#editor' ),
 			},
 			toolbar: [ 'math', 'link' ],
 			contentToolbar: [ 'math', 'link' ],
-			extraPlugins: [ window.CKEDITOR.MoveSelectionToTextOnInit ],
+			extraPlugins: [ window.CKEDITOR.MoveSelectionToTextOnInit, window.CKEDITOR.EditorClassPlugin ],
 		} )
 		.then( editor => {
 			window.editor = editor;
