@@ -54,6 +54,10 @@ import '../theme/theme.css';
 class BalloonEditor extends BalloonEditorBase {}
 class ClassicEditor extends ClassicEditorBase {}
 
+//
+// Add CSS class to the editor upon initialiation
+// Support ticket(s): #68240
+//
 function EditorClassPlugin( editor ) {
 	const className = editor.config.get( 'editorClass' );
 
@@ -83,6 +87,7 @@ function MoveSelectionToTextOnInit( editor ) {
 	//
 	// Widget Workaround (no focus on load): Single widget in content area, avoid selecting by default by insert a newline after
 	// This will briefly focus the image initially, but add a new line and defocus.
+	// Support ticket(s): #70627
 	//
 	editor.data.on( 'init', () => {
 		const selectedElement = selection.getSelectedElement();
@@ -109,6 +114,7 @@ function MoveSelectionToTextOnInit( editor ) {
 
 	//
 	// Widget Workaround part 2 (delection edgecase): Allow image to be defocused when clicking on the right side
+	// Support ticket(s): #70796
 	//
 	editor.editing.view.document.on( 'change:isFocused', ( evt, name, isFocused ) => {
 		const model = editor.model;
