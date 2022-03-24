@@ -114,9 +114,9 @@ function MoveSelectionToTextOnInit( editor ) {
 
 	//
 	// Widget Workaround part 2 (delection edgecase): Allow image to be defocused when clicking on the right side
-	// Support ticket(s): #70796
+	// Support ticket(s): #70796 + #73702
 	//
-	editor.editing.view.document.on( 'change:isFocused', ( evt, name, isFocused ) => {
+	editor.ui.view.editable.on( 'change:isFocused', ( evt, name, isFocused ) => {
 		const model = editor.model;
 		const selection = model.document.selection;
 		const schema = model.schema;
