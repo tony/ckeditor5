@@ -179,6 +179,10 @@ module.exports = {
 			/accordion\.svg/,
 			'@peergrade/ckeditor5-build-eduflow/theme/icons/accordion-eduflow.svg'
 		),
+		new webpack.NormalModuleReplacementPlugin(
+			/paperclip\.svg/,
+			'@peergrade/ckeditor5-build-eduflow/theme/icons/paperclip-eduflow.svg'
+		),
 		new CKEditorWebpackPlugin( {
 			// UI language. Language codes follow the https://en.wikipedia.org/wiki/ISO_639-1 format.
 			// When changing the built-in language, remember to also change it in the editor's configuration (src/ckeditor.js).
