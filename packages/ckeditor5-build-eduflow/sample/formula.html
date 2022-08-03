@@ -23,6 +23,9 @@
 		<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
 	</figure>
 	<span class="math-tex">\(B.P. = f(E \&amp; RV)\)</span>
+	<p>
+	This should show "\test" as a ≠: <span class="math-tex">\(\neq\)</span>
+	</p>
 </div>
 
 <script src="../build/ckeditor.js"></script>
@@ -41,6 +44,12 @@ window.CKEDITOR.ClassicEditor.create( document.querySelector( '#editor' ),
 				outputType: 'span', // or script
 				forceOutputType: true, // forces output to use outputType
 				enablePreview: true, // Enable preview view
+				katexRenderOptions: {
+					macros: {
+						"\\neq": "\\mathrel{\\char`≠}",
+						"\\test": "\\mathrel{\\char`≠}"
+					}
+				}
 			},
 			toolbar: [ 'math', 'link' ],
 			contentToolbar: [ 'math', 'link' ]
