@@ -65,6 +65,13 @@
 	window.CKEDITOR.ClassicEditor.create( document.querySelector( '#editor' ), {
 			toolbar: [ 'fileUpload' ],
 			image: { toolbar:['linkImage'] },
+			fileUpload: {
+					downloadLinkRewriter: ( href, el, context ) => {
+							// eslint-disable-next-line no-undef
+							console.log( 'downloadLinkRewriter, optional callback', href, el, context );
+							return `${ href }?addedViaDownloadLinkRewriter`;
+					}
+			}
 		})
 		.then( editor => {
 			window.editor = editor;
