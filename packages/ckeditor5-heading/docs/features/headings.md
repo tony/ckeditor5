@@ -81,8 +81,8 @@ ClassicEditor
 			]
 		}
 	} )
-	.then( ... )
-	.catch( ... );
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 {@snippet features/custom-heading-levels}
@@ -133,8 +133,8 @@ ClassicEditor
 			]
 		}
 	} )
-	.then( ... )
-	.catch( ... );
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 {@snippet features/custom-heading-elements}
@@ -159,8 +159,8 @@ ClassicEditor
 			]
 		}
 	} )
-	.then( ... )
-    .catch( ... );
+	.then( /* ... */ )
+    .catch( /* ... */ );
 ```
 {@snippet features/custom-heading-buttons}
 
@@ -184,11 +184,11 @@ import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 
 ClassicEditor
 	.create( document.querySelector( '#editor' ), {
-		plugins: [ Heading, ... ],
-		toolbar: [ 'heading', ... ]
+		plugins: [ Heading, /* ... */ ],
+		toolbar: [ 'heading', /* ... */ ]
 	} )
-	.then( ... )
-	.catch( ... );
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ### Installation with toolbar heading buttons
@@ -234,4 +234,4 @@ The {@link module:paragraph/paragraphbuttonui~ParagraphButtonUI} plugin register
 
 ## Contribute
 
-The source code of the feature is available on GitHub in https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-heading.
+The source code of the feature is available on GitHub in [https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-heading](https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-heading).

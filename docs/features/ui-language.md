@@ -7,7 +7,7 @@ menu-title: UI language
 
 # Setting the UI language
 
-The UI of the editor can be localized. Currently, 41 of available languages are fully translated. 38 languages were translated professionally. There are also numerous other languages covered by community translators. Full list of professional translations is available in the [latter part of this document](#list-of-available-professional-translations).
+The UI of the editor can be localized. Currently, 41 of the available languages are fully translated. 38 languages were translated professionally. There are also numerous other languages covered by community translators. A full list of professional translations is available in the [latter part of this document](#list-of-available-professional-translations).
 
 <info-box>
 	If you want to help translate CKEditor 5 into your native language, join the [CKEditor 5 project on Transifex](https://www.transifex.com/ckeditor/ckeditor5/). Your help will be much appreciated!
@@ -102,16 +102,16 @@ See the {@link installation/getting-started/predefined-builds#zip-download zip i
 
 ## Building the editor using a specific language
 
-Currently, it is possible to change the UI language at the build stage and after the build. A single build of the editor supports the language which was defined in the [CKEditor 5 webpack plugin](https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin)'s configuration. Check the whole translation process to see how you can change the language later.
+Currently, it is possible to change the UI language at the build stage and after the build. A single build of the editor supports the language which was defined in the [CKEditor 5 translations plugin](https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-translations)'s configuration. Check the whole translation process to see how you can change the language later.
 
 If you use one of the {@link installation/index predefined editor builds}, refer to {@link installation/getting-started/quick-start-other#building-the-editor-from-source Creating custom builds} to learn how to change the language of your build.
 
 If you build CKEditor 5 from scratch or integrate it directly into your application, then all you need to do is to:
 
-1. Install the [`@ckeditor/ckeditor5-dev-webpack-plugin`](https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin) package:
+1. Install the [`@ckeditor/ckeditor5-dev-translations`](https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-translations) package:
 
 	```
-	npm install --save @ckeditor/ckeditor5-dev-webpack-plugin
+	npm install --save @ckeditor/ckeditor5-dev-translations
 	```
 
 2. Add it to your webpack configuration:
@@ -119,11 +119,14 @@ If you build CKEditor 5 from scratch or integrate it directly into your applicat
 	Note: The language code is defined in the [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) standard.
 
 	```js
-	const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
+	const { CKEditorTranslationsPlugin } = require( '@ckeditor/ckeditor5-dev-translations' );
 
-	// Define webpack plugins...
+	module.exports = {
+		// Define webpack plugins.
+		// ...
+		
 		plugins: [
-			new CKEditorWebpackPlugin( {
+			new CKEditorTranslationsPlugin( {
 				// The main language that will be built into the main bundle.
 				language: 'en',
 
@@ -132,12 +135,16 @@ If you build CKEditor 5 from scratch or integrate it directly into your applicat
 				// The bundle is optimized for one language when this option is omitted.
 				additionalLanguages: 'all',
 
-				// For more advanced options see https://github.com/ckeditor/ckeditor5-dev/tree/master/packages/ckeditor5-dev-webpack-plugin.
+				// For more advanced options see https://github.com/ckeditor/ckeditor5-dev/tree/master/packages/ckeditor5-dev-translations.
 			} ),
 
-			// Other webpack plugins...
+			// Other webpack plugins.
+			// ...
 		]
-	// ...
+
+		// Remaining webpack configuration.
+		// ...
+	}
 	```
 
 3. Run webpack. The CKEditor 5 plugin for webpack will emit additional files for each language specified in the `additionalLanguages` option. They will contain translations for messages from the {@link module:utils/locale~Locale#t `t()` function} calls. The files will be created in the `translations` directory (or another one if the `outputDirectory` option is specified). Translations from the language specified in the `language` option will be automatically included in the build.
